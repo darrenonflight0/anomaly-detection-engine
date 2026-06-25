@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sentinel · Real-Time Anomaly Detection</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="/static/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='6' fill='%2338e0c0'/></svg>" />
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <div class="brand-text">
+        <h1>SENTINEL</h1>
+        <p>Real-time anomaly detection engine</p>
+      </div>
+    </div>
+    <div class="topbar-meta">
+      <div class="pill" id="busPill"><span class="dot"></span><span id="busLabel">bus</span></div>
+      <div class="conn" id="conn"><span class="conn-dot"></span><span id="connLabel">connecting…</span></div>
+    </div>
+  </header>
+
+  <section class="kpis">
+    <article class="kpi">
+      <span class="kpi-label">Events processed</span>
+      <span class="kpi-value mono" id="kpiEvents">0</span>
+      <span class="kpi-sub mono" id="kpiRate">0.0 /s</span>
+    </article>
+    <article class="kpi">
+      <span class="kpi-label">Anomalies detected</span>
+      <span class="kpi-value mono accent-warn" id="kpiAnoms">0</span>
+      <span class="kpi-sub mono" id="kpiAnomRate">0.0% of stream</span>
+    </article>
+    <article class="kpi">
+      <span class="kpi-label">Unique entities · HyperLogLog</span>
+      <span class="kpi-value mono accent" id="kpiUnique">0</span>
+      <span class="kpi-sub mono" id="kpiUniqueWin">window: 0</span>
+    </article>
+    <article class="kpi kpi-gauge">
+      <span class="kpi-label">Isolation score · multivariate</span>
+      <div class="gauge"><div class="gauge-fill" id="isoFill"></div><span class="gauge-num mono" id="isoVal">0.00</span></div>
+      <span class="kpi-sub mono" id="isoState">nominal</span>
+    </article>
+  </section>
+
+  <main class="grid">
+    <section class="charts">
+      <div class="panel chart-panel">
+        <div class="panel-head">
+          <h2>Latency <span class="unit">ms</span></h2>
+          <div class="stat-row mono" id="statLatency"></div>
+        </div>
+        <canvas id="chartLatency" height="150"></canvas>
+      </div>
+      <div class="panel chart-panel">
+        <div class="panel-head">
+          <h2>Error rate <span class="unit">%</span></h2>
+          <div class="stat-row mono" id="statError"></div>
+        </div>
+        <canvas id="chartError" height="150"></canvas>
+      </div>
+      <div class="panel chart-panel">
+        <div class="panel-head">
+          <h2>Traffic <span class="unit">rps</span></h2>
+          <div class="stat-row mono" id="statTraffic"></div>
+        </div>
+        <canvas id="chartTraffic" height="150"></canvas>
+      </div>
+    </section>
+
+    <aside class="sidebar">
+      <div class="panel">
+        <div class="panel-head"><h2>Top endpoints <span class="unit">Count-Min Sketch</span></h2></div>
+        <ul class="bars" id="topEndpoints"><li class="empty">awaiting traffic…</li></ul>
+      </div>
+
+      <div class="panel alerts-panel">
+        <div class="panel-head">
+          <h2>Live alerts</h2>
+          <span class="counter mono" id="alertCount">0</span>
+        </div>
+        <ul class="alerts" id="alerts"><li class="empty">no anomalies yet — system nominal</li></ul>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <span>Probabilistic streaming DSA · T-Digest · HyperLogLog · Count-Min Sketch · EMA · Isolation Forest</span>
+    <span class="mono" id="uptime">uptime 0s</span>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

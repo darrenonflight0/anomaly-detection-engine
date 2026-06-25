@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 460" font-family="'Segoe UI',Inter,sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b121b"/><stop offset="1" stop-color="#070b11"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#36b3ff"/><stop offset="1" stop-color="#38e0c0"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#38e0c0"/>
+    </marker>
+    <style>
+      .box{fill:#0e151f;stroke:#1c2734;stroke-width:1.5;rx:12;}
+      .title{fill:#d7e2ee;font-size:15px;font-weight:600;}
+      .sub{fill:#7c8a9c;font-size:11px;}
+      .tag{fill:#38e0c0;font-size:11.5px;font-family:'JetBrains Mono',monospace;}
+      .lbl{fill:#54616f;font-size:10.5px;font-family:'JetBrains Mono',monospace;}
+      .flow{stroke:#2b6f74;stroke-width:1.8;fill:none;}
+    </style>
+  </defs>
+
+  <rect width="1040" height="460" fill="url(#bg)"/>
+  <rect x="1" y="1" width="1038" height="6" fill="url(#accent)"/>
+
+  <text x="36" y="50" class="title" font-size="20" letter-spacing="4">SENTINEL</text>
+  <text x="36" y="72" class="sub">Real-time anomaly detection over streaming metrics</text>
+
+  <!-- Producer -->
+  <rect class="box" x="36" y="110" width="180" height="120" rx="12"/>
+  <text x="56" y="142" class="title">Producer</text>
+  <text x="56" y="164" class="sub">Telemetry stream</text>
+  <text x="56" y="188" class="lbl">latency · errors</text>
+  <text x="56" y="205" class="lbl">traffic · users</text>
+  <text x="56" y="222" class="lbl">+ injected anomalies</text>
+
+  <!-- Bus -->
+  <rect class="box" x="268" y="110" width="150" height="120" rx="12"/>
+  <text x="288" y="142" class="title">Message bus</text>
+  <text x="288" y="166" class="tag">Kafka</text>
+  <text x="288" y="186" class="sub">— or —</text>
+  <text x="288" y="208" class="tag">in-memory</text>
+
+  <!-- Engine -->
+  <rect class="box" x="470" y="92" width="320" height="276" rx="12"/>
+  <text x="490" y="124" class="title">Detection engine</text>
+  <text x="490" y="143" class="sub">one structure per concern</text>
+
+  <rect x="490" y="158" width="280" height="34" rx="8" fill="#111a26" stroke="#1c2734"/>
+  <text x="502" y="180" class="tag">T-Digest</text><text x="610" y="180" class="lbl">p50 / p95 / p99</text>
+  <rect x="490" y="198" width="280" height="34" rx="8" fill="#111a26" stroke="#1c2734"/>
+  <text x="502" y="220" class="tag">EMA + z-score</text><text x="640" y="220" class="lbl">spikes</text>
+  <rect x="490" y="238" width="280" height="34" rx="8" fill="#111a26" stroke="#1c2734"/>
+  <text x="502" y="260" class="tag">Isolation Forest</text><text x="640" y="260" class="lbl">multivariate</text>
+  <rect x="490" y="278" width="280" height="34" rx="8" fill="#111a26" stroke="#1c2734"/>
+  <text x="502" y="300" class="tag">HyperLogLog</text><text x="618" y="300" class="lbl">cardinality</text>
+  <rect x="490" y="318" width="280" height="34" rx="8" fill="#111a26" stroke="#1c2734"/>
+  <text x="502" y="340" class="tag">Count-Min Sketch</text><text x="660" y="340" class="lbl">heavy hitters</text>
+
+  <!-- Dashboard -->
+  <rect class="box" x="842" y="110" width="162" height="120" rx="12"/>
+  <text x="862" y="142" class="title">Dashboard</text>
+  <text x="862" y="166" class="sub">FastAPI</text>
+  <text x="862" y="190" class="tag">WebSocket</text>
+  <text x="862" y="212" class="lbl">live charts</text>
+
+  <!-- flows -->
+  <path class="flow" d="M216,170 L262,170" marker-end="url(#arrow)"/>
+  <path class="flow" d="M418,170 L464,170" marker-end="url(#arrow)"/>
+  <path class="flow" d="M790,170 L836,170" marker-end="url(#arrow)"/>
+  <text x="222" y="160" class="lbl">publish</text>
+  <text x="424" y="160" class="lbl">consume</text>
+  <text x="796" y="160" class="lbl">push</text>
+
+  <text x="36" y="410" class="sub">Probabilistic &amp; streaming data structures · O(1) updates · bounded memory · sub-linear space</text>
+  <text x="36" y="432" class="lbl">Python · FastAPI · aiokafka · Chart.js · zero-build dashboard</text>
+</svg>
