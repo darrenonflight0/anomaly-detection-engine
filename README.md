@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🛰️ Sentinel
+#  Sentinel
 
 ### Real-Time Anomaly Detection Engine
 
